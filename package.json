@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/kmvanneste/Team-Profile-Generator#readme",
   "dependencies": {
-    "inquirer": "^7.3.3"
+    "fs": "0.0.1-security",
+    "inquirer": "^7.3.3",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "jest": "^26.4.0"
