@@ -13,6 +13,8 @@ const render = require("./lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+
+
 // TODO: Write code to define and export the Employee class
 
 inquirer.prompt([
@@ -38,42 +40,65 @@ inquirer.prompt([
         name: "email",
     },
 ]).then(function(response){
-
-const newEmployee = new Employee(response);
-
-})
-
-
     this.position = response.position;
     this.name = response.name;
     this.id = response.id;
     this.email = response.email;
     if (this.position === "Manager") {
-        fs.appendFile("manager.html", Manager(response), function(error){
-            if (error) {
-                console.log(error);
-                return;
+        inquirer.prompt([
+            {
+                type: "input",
+                message: "What is your office number?",
+                name: "officeNumber",
             }
-            console.log("Success! The team has a manager.");
-        }) 
+        ]).then(function(response) {
+            fs.appendFile("main.html", new Manager(response), function(error){
+                if (error) {
+                    console.log(error);
+                    return;
+                }
+                console.log("Success! The team has a manager.");
+            }) 
+        })
     } else if (this.position === "Engineer") {
-        fs.appendFile("engineer.html", Engineer(response), function(error){
-            if (error) {
-                console.log(error);
-                return;
+        inquirer.prompt([
+            {
+                type: "input",
+                message: "What is your GitHub account name?",
+                name: "GitHub",
             }
-            console.log("Success! Added an Engineer to the team.");
-        }) 
+        ]).then(function(response) {
+            fs.appendFile("engineer.html", new Engineer(response), function(error){
+                if (error) {
+                    console.log(error);
+                    return;
+                }
+                console.log("Success! Added an Engineer to the team.");
+            }) 
+        })
     } else if (this.position === "intern") {
-        fs.appendFile("intern.html", Intern(response), function(error){
-            if (error) {
-                console.log(error);
-                return;
+        inquirer.prompt([
+            {
+                type: "input",
+                message: "What is your GitHub account name?",
+                name: "GitHub",
             }
-            console.log("Success! Added an intern to the team.");
+        ]).then(function(response) {
+            fs.appendFile("intern.html", Intern(response), function(error){
+                if (error) {
+                    console.log(error);
+                    return;
+                }
+                console.log("Success! Added an intern to the team.");
+            }) 
         }) 
     }
 
+})
+
+
+    
+    const newEmployee = new Employee(response);
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
