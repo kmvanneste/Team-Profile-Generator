@@ -1,5 +1,5 @@
 {
-  "name": "Team-Profile-Generator",
+  "name": "team-profile-generator",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kmvanneste/Team-Profile-Generator.git"
+    "url": "git+https://github.com/kmvanneste/team-profile-generator.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kmvanneste/Team-Profile-Generator/issues"
+    "url": "https://github.com/kmvanneste/team-profile-generator/issues"
   },
-  "homepage": "https://github.com/kmvanneste/Team-Profile-Generator#readme",
+  "homepage": "https://github.com/kmvanneste/team-profile-generator#readme",
   "dependencies": {
     "email": "^0.2.6",
     "existence": "^1.1.0",
