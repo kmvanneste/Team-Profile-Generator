@@ -1,4 +1,4 @@
-const Employee = require("./lib/Employee");
+// const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -44,6 +44,19 @@ inquirer.prompt([
     this.name = response.name;
     this.id = response.id;
     this.email = response.email;
+        
+    const emailSymbol = "@";
+    const comSymbol = ".com"
+    function checkEmail() {
+        let email = this.email.split("");
+        if (email.includes(emailSymbol) && email.includes(comSymbol)) {
+            return;
+        } else {
+            return console.log("Please enter a valid email address.");
+        }
+    }
+    checkEmail();
+    
     if (this.position === "Manager") {
         inquirer.prompt([
             {
@@ -52,7 +65,7 @@ inquirer.prompt([
                 name: "officeNumber",
             }
         ]).then(function(response) {
-            fs.appendFile("main.html", new Manager(response), function(error){
+            fs.appendFile("./templates/manager.html", new Manager(response), function(error){
                 if (error) {
                     console.log(error);
                     return;
@@ -68,7 +81,7 @@ inquirer.prompt([
                 name: "GitHub",
             }
         ]).then(function(response) {
-            fs.appendFile("engineer.html", new Engineer(response), function(error){
+            fs.appendFile("./templates/engineer.html", new Engineer(response), function(error){
                 if (error) {
                     console.log(error);
                     return;
@@ -84,7 +97,7 @@ inquirer.prompt([
                 name: "GitHub",
             }
         ]).then(function(response) {
-            fs.appendFile("intern.html", Intern(response), function(error){
+            fs.appendFile("./templates/intern.html", Intern(response), function(error){
                 if (error) {
                     console.log(error);
                     return;
@@ -96,9 +109,6 @@ inquirer.prompt([
 
 })
 
-
-    
-    const newEmployee = new Employee(response);
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
