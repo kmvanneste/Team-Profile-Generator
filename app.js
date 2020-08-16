@@ -9,14 +9,13 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const Employee = require("./lib/Employee");
 
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 // TODO: Write code to define and export the Employee class
-// const managerClass = require("./lib/Manager.js");
-// const engineerClass = require("./lib/Engineer.js");
-// const internClass = require("./intern.js");
+
 inquirer.prompt([
     {
         type: "list",
@@ -40,6 +39,12 @@ inquirer.prompt([
         name: "email",
     },
 ]).then(function(response){
+
+const newEmployee = new Employee(response);
+
+})
+
+
     this.position = response.position;
     this.name = response.name;
     this.id = response.id;
@@ -69,7 +74,7 @@ inquirer.prompt([
             console.log("Success! Added an intern to the team.");
         }) 
     }
-})
+
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
