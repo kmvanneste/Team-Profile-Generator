@@ -66,7 +66,7 @@ function askQuestions() {
                 console.log(new Engineer(this.name, this.id, this.email, this.github));
                 return addMore();
             })
-        } else if (this.role === "intern") {
+        } else if (this.role === "Intern") {
             inquirer.prompt([
                 {
                     type: "input",
@@ -80,7 +80,6 @@ function askQuestions() {
                 return addMore();
             })
         }
-        render(team);
     })
 }
 askQuestions();
@@ -90,30 +89,29 @@ function addMore() {
         {
             type:"list",
             choices: ["Yes", "No"],
+            message: "Would you like to add someone else to your team?",
             name: "newMember"
         }
     ]).then(function(response) {
+        
         if (response.newMember === "Yes") {
             return askQuestions();
         } else {
-            buildTeamProfile();
+            if (!fs.existsSync(OUTPUT_DIR)) {
+                fs.mkdirSync(OUTPUT_DIR);
+            } 
+            fs.writeFile(outputFile, render(team), "utf8", function(error) {
+                if (error) {
+                    console.log(error);
+                    return;
+                }
+                console.log("Success!");
+            })
             return ("Team Created!!");
         }
     });
 }
 
-function buildTeamProfile () {
-    if (!fs.existsSync(OUTPUT_DIR)) {
-        fs.mkdirSync(OUTPUT_DIR);
-    } 
-    fs.writeFile(outputFile, render(team), "utf8", function(error) {
-        if (error) {
-            console.log(error);
-            return;
-        }
-        console.log("Success!");
-    })
-}
 
 
 //FUNCTION CHECKING TO SEE IF USER INPUTS A PROPER EMAIL ADDRESS    
